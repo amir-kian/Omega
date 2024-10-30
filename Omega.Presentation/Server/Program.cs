@@ -43,8 +43,12 @@ namespace Omega.Presentation.Server
 			builder.Services.AddScoped<IReadCustomerRepository, ReadCustomerRepository>();
 			builder.Services.AddScoped<IEventRepository<IDomainEvent>, EventRepository>();
 			builder.Services.AddScoped<ICustomerEventHandler, CustomerEventHandler>();
-			
+
+
+			// Add services to the container.
+			builder.Services.AddHttpClient<IEbeheshtService, EbeheshtService>();
 			builder.Services.AddScoped<IEbeheshtService, EbeheshtService>();
+
 
 			builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(CreateCustomerCommand))
 				.RegisterServicesFromAssemblyContaining(typeof(CreateCustomerCommandHandler)));

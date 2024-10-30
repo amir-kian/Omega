@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{FB248EC9-0445-43D4-9CF0-2AFB9860EAFE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{642A88DC-CB24-44F1-83EC-7B72CED092B8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application.Contracts", "Application.Contracts", "{642A88DC-CB24-44F1-83EC-7B72CED092B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{1BFFEE82-31B2-42D9-86FC-9BC5DA562C55}"
 EndProject
@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Omega.Presentation.Server",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Omega.Domain", "Omega.Domain\Omega.Domain.csproj", "{34C34FC3-719C-450C-BBD7-2C6840BA33F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Omega.Service", "Omega.Service\Omega.Service.csproj", "{A00E00A8-DB2B-49A3-ABB9-0C21727E6C1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Omega.UseCases", "Omega.Service\Omega.UseCases.csproj", "{A00E00A8-DB2B-49A3-ABB9-0C21727E6C1A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Omega.Presentation.Infrastructure", "Omega.Presentation.Infrastructure\Omega.Presentation.Infrastructure.csproj", "{F19C3513-1C1C-4DB0-BC8C-F20C538114F3}"
 EndProject

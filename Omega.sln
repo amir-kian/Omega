@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Omega.Core", "Core\Omega.Core.csproj", "{C5DC41AA-0346-4497-B835-C5BB9109A2DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omega.ExternalService", "Omega.ExternalService\Omega.ExternalService.csproj", "{13321354-FB68-41D6-B2E0-B6FE57363725}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{C5DC41AA-0346-4497-B835-C5BB9109A2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5DC41AA-0346-4497-B835-C5BB9109A2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5DC41AA-0346-4497-B835-C5BB9109A2DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13321354-FB68-41D6-B2E0-B6FE57363725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13321354-FB68-41D6-B2E0-B6FE57363725}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13321354-FB68-41D6-B2E0-B6FE57363725}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13321354-FB68-41D6-B2E0-B6FE57363725}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +81,7 @@ Global
 		{F19C3513-1C1C-4DB0-BC8C-F20C538114F3} = {1CA69683-EAF4-4CA9-BCAC-7F4778C58AA9}
 		{E14883C0-F81F-430A-ACAC-E4B8EE231572} = {1CA69683-EAF4-4CA9-BCAC-7F4778C58AA9}
 		{C5DC41AA-0346-4497-B835-C5BB9109A2DC} = {642A88DC-CB24-44F1-83EC-7B72CED092B8}
+		{13321354-FB68-41D6-B2E0-B6FE57363725} = {1CA69683-EAF4-4CA9-BCAC-7F4778C58AA9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B5A26C9-68C1-49D9-9F32-AF907A1730C2}

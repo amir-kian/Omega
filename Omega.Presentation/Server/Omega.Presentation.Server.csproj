@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Omega.ExternalService\Omega.ExternalService.csproj" />
     <ProjectReference Include="..\..\Omega.Presentation.Infrastructure\Omega.Presentation.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Omega.Repository\Omega.Repository.csproj" />
     <ProjectReference Include="..\..\Omega.Service\Omega.UseCases.csproj" />

@@ -1,7 +1,10 @@
 ﻿using MediatR;
 using Omega.Core.DTOs;
+using Omega.Core.DTOs.ServiceItems;
 using Omega.Domain.Interfaces;
 using Omega.Domain.Queries;
+using Omega.Domain.Queries.ServiceItems;
+using Omega.ExternalService.EbeheshtServices.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,32 +14,38 @@ using System.Threading.Tasks;
 namespace Omega.Service.Handlers.ServiceItems;
 
 
-public class GetAllServiceItemsQueryHandler : IRequestHandler<GetAllCustomersQuery, CustomerReadDTO[]>
+public class GetAllServiceItemsQueryHandler : IRequestHandler<GetAllServiceItemsQuery, ServiceItemReadDTO[]>
 {
-	private readonly IReadCustomerRepository _repository;
+	private readonly IEbeheshtService _ebeheshtService;
 
-	public GetAllServiceItemsQueryHandler(IReadCustomerRepository repository)
+	public GetAllServiceItemsQueryHandler(IEbeheshtService ebeheshtService)
 	{
-		_repository = repository;
+		_ebeheshtService = ebeheshtService;
 	}
 
-	public async Task<CustomerReadDTO[]> Handle(GetAllCustomersQuery request, CancellationToken cancellationToken)
+	public async Task<ServiceItemReadDTO[]> Handle(GetAllServiceItemsQuery request, CancellationToken cancellationToken)
 	{
-		var customers = await _repository.GetAllCustomers();
-		var result = new CustomerReadDTO[customers.Count];
+		var serviceItemsResponse = await _ebeheshtService.GetAllItemsAsync();
+		var serviceItems = serviceItemsResponse.Data;
 
-		for (var i = 0; i < customers.Count; i++)
+		var result = serviceItems.Select(item => new ServiceItemReadDTO
 		{
-			result[i] = new CustomerReadDTO
-			{
-				Id = customers[i].Id,
-				Firstname = customers[i].Firstname,
-				Lastname = customers[i].Lastname,
-				DateOfBirth = customers[i].DateOfBirth,
-				PhoneNumber = customers[i].PhoneNumber.ToString(), // Convert PhoneNumber to string
-				Email = customers[i].Email.ToString() // Convert Email to string
-			};
-		}
+			Id = item.Id,
+			ServiceId = item.ServiceId,
+			Name = item.Name,
+			Code = item.Code,
+			Price = item.Price,
+			IsDefault = item.IsDefault,
+			TransportCostIncluded = item.TransportCostIncluded,
+			Qty = item.Qty,
+			MinQty = item.MinQty,
+			MaxQty = item.MaxQty,
+			Description = item.Description,
+			ContractorSharePercent = item.ContractorSharePercent,
+			UnitMeasureId = item.UnitMeasureId,
+			UnitMeasureName = item.UnitMeasureName,
+			SuperContractorsId = item.SuperContractorsId
+		}).ToArray();
 
 		return result;
 	}

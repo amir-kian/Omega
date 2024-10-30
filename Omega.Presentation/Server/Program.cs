@@ -9,6 +9,8 @@ using Omega.Domain.Events.Request;
 using Omega.Domain.Interfaces;
 using Omega.Domain.Interfaces.Request;
 using Omega.Domain.Queries;
+using Omega.ExternalService.EbeheshtServices;
+using Omega.ExternalService.EbeheshtServices.Contracts;
 using Omega.Presentation.Infrastructure;
 using Omega.Repository;
 using Omega.Repository.Request;
@@ -41,6 +43,8 @@ namespace Omega.Presentation.Server
 			builder.Services.AddScoped<IReadCustomerRepository, ReadCustomerRepository>();
 			builder.Services.AddScoped<IEventRepository<IDomainEvent>, EventRepository>();
 			builder.Services.AddScoped<ICustomerEventHandler, CustomerEventHandler>();
+			
+			builder.Services.AddScoped<IEbeheshtService, EbeheshtService>();
 
 			builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(CreateCustomerCommand))
 				.RegisterServicesFromAssemblyContaining(typeof(CreateCustomerCommandHandler)));

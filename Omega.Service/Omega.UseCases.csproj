@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Omega.Domain\Omega.Domain.csproj" />
+    <ProjectReference Include="..\Omega.ExternalService\Omega.ExternalService.csproj" />
   </ItemGroup>
 
 </Project>

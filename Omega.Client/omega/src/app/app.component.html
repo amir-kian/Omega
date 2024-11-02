@@ -1,14 +1,44 @@
 <style>
-  /* Your styles here */
+  body {
+  direction: rtl;
+  }
   </style>
   
   <main class="main container mt-5">
-    <div *ngIf="data" class="card">
-    <div class="card-body">
-    <h1 class="card-title">API Data</h1>
-    <pre class="card-text">{{ data | json }}</pre>
-    </div>
-    </div>
-    </main>
+  <div *ngIf="data" class="card">
+  <div class="card-body">
+  <h1 class="card-title">API Data</h1>
+  <table class="table table-striped">
+  <thead>
+  <tr>
+  <th scope="col">Service ID</th>
+  <th scope="col">Name</th>
+  <th scope="col">Code</th>
+  <th scope="col">Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of data.data" (click)="fetchDetails(item.serviceId)">
+  <td>{{ item.serviceId }}</td>
+  <td>{{ item.name }}</td>
+  <td>{{ item.code }}</td>
+  <td>{{ item.price | currency:'IRR' }}</td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  
+  <div *ngIf="selectedService" class="card mt-3">
+  <div class="card-body">
+  <h2 class="card-title">Service Details</h2>
+  <p><strong>ID:</strong> {{ selectedService.serviceId }}</p>
+  <p><strong>Name:</strong> {{ selectedService.name }}</p>
+  <p><strong>Code:</strong> {{ selectedService.code }}</p>
+  <p><strong>Price:</strong> {{ selectedService.price | currency:'IRR' }}</p>
+  <p><strong>Description:</strong> <span [innerHTML]="selectedService.description"></span></p>
+  </div>
+  </div>
+  </main>
   
   <router-outlet></router-outlet>

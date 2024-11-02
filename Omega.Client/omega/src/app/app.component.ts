@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; // Import RouterModule
+import { RouterModule } from '@angular/router';
 
 @Component({
 selector: 'app-root',
 standalone: true,
-imports: [HttpClientModule, CommonModule, RouterModule], // Add RouterModule here
+imports: [HttpClientModule, CommonModule, RouterModule],
 templateUrl: './app.component.html',
 styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
 data: any;
+selectedService: any;
 
 constructor(private apiService: ApiService) {}
 
@@ -23,6 +24,18 @@ this.data = response;
 },
 (error) => {
 console.error('Error fetching data', error);
+}
+);
+}
+
+fetchDetails(serviceId: number) {
+  debugger;
+this.apiService.getServiceDetails(serviceId).subscribe(
+(response) => {
+this.selectedService = response;
+},
+(error) => {
+console.error('Error fetching service details', error);
 }
 );
 }

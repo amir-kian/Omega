@@ -449,3 +449,10 @@ $RECYCLE.BIN/
 ##
 .vscode/*
 /.vscode/
+#ignlor angular node_modules
+/Omega.Client/omega/node_modules
+/Omega.Client/omega/.angular
+/Omega.Client/omega/.vscode
+
+
+

@@ -1,17 +1,29 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
-import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
-@NgModule({
-  declarations: [ 
-    
-  ],
-  imports: [ // Import necessary modules
-    BrowserModule,
-    HttpClientModule
-  ],
-  providers: [], // Add any providers here if needed
-  bootstrap: []
+@Component({
+selector: 'app-root',
+standalone: true,
+imports: [HttpClientModule, CommonModule, RouterModule],
+templateUrl: './app.component.html',
+styleUrls: ['./app.component.css']
 })
-export class AppModule {}
+export class AppComponent implements OnInit {
+data: any;
+
+constructor(private apiService: ApiService) {}
+
+ngOnInit() {
+this.apiService.getAllItems().subscribe(
+(response) => {
+this.data = response;
+},
+(error) => {
+console.error('Error fetching data', error);
+}
+);
+}
+}

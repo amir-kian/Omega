@@ -8,9 +8,9 @@ namespace Omega.ExternalService.EbeheshtServices.Models;
 
 public class ServiceResponse
 {
-	public int Id { get; set; }
-	public List<ServiceItem> Data { get; set; }
-	public bool Success { get; set; }
-	public string Description { get; set; }
-	public decimal Total { get; set; }
+    public int Id { get; set; }
+    public List<ServiceItem> Data { get; set; }
+    public bool Success { get; set; }
+    public string Description { get; set; }
+    public decimal Total { get; set; }
 }

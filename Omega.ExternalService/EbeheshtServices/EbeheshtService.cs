@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Omega.ExternalService.EbeheshtServices.Contracts;
 using Omega.ExternalService.EbeheshtServices.Models;
+using Omega.ExternalService.EbeheshtServices.Models.GetItem;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
@@ -22,7 +23,7 @@ public class EbeheshtService : IEbeheshtService
 		var baseUrl = _configuration.GetValue<string>("EbeheshtApi:BaseUrl");
 		var request = new HttpRequestMessage(HttpMethod.Get, baseUrl);
 		request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-		request.Headers.Add("apikey", "C85FC5A0-B8FB-4D65-AEE1-B956E3E1D186");
+		request.Headers.Add("apikey", _configuration.GetValue<string>("EbeheshtApi:ApiKey"));
 
 		var response = await _httpClient.SendAsync(request);
 
@@ -36,6 +37,29 @@ public class EbeheshtService : IEbeheshtService
 			PropertyNamingPolicy = JsonNamingPolicy.CamelCase
 		};
 		var serviceResponse = JsonSerializer.Deserialize<ServiceResponse>(jsonResponse, options);
+
+		return serviceResponse;
+	}
+
+	public async Task<GetItemResponse> GetItemAsync(int itemId)
+	{
+		var baseUrl = _configuration.GetValue<string>("EbeheshtApi:GetItemUrl");
+		var request = new HttpRequestMessage(HttpMethod.Get, baseUrl +itemId);
+		request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+		request.Headers.Add("apikey", _configuration.GetValue<string>("EbeheshtApi:ApiKey"));
+
+		var response = await _httpClient.SendAsync(request);
+
+		response.EnsureSuccessStatusCode();
+
+		var jsonResponse = await response.Content.ReadAsStringAsync();
+		var options = new JsonSerializerOptions
+		{
+			PropertyNameCaseInsensitive = true,
+			IgnoreNullValues = true,
+			PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+		};
+		var serviceResponse = JsonSerializer.Deserialize<GetItemResponse>(jsonResponse, options);
 
 		return serviceResponse;
 	}

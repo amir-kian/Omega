@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, importProvidersFrom, OnInit } from '@angular/core';
 import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { ServiceDetailsComponent } from './service-details/service-details.component';
 
 @Component({
 selector: 'app-root',
@@ -27,3 +29,18 @@ console.error('Error fetching data', error);
 );
 }
 }
+
+const routes: Routes = [
+{ path: 'service-details/:id', component: ServiceDetailsComponent },
+// other routes
+];
+
+bootstrapApplication(AppComponent, {
+providers: [
+{ provide: 'apiService', useClass: ApiService },
+importProvidersFrom(HttpClientModule, CommonModule, RouterModule.forRoot(routes))
+]
+});
+
+
+

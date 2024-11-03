@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { ServiceDetailsComponent } from './service-details/service-details.component';
 
 @Component({
 selector: 'app-root',
@@ -13,9 +15,8 @@ styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
 data: any;
-selectedService: any;
 
-constructor(private apiService: ApiService) {}
+constructor(private apiService: ApiService, private router: Router) {}
 
 ngOnInit() {
 this.apiService.getAllItems().subscribe(
@@ -28,15 +29,20 @@ console.error('Error fetching data', error);
 );
 }
 
-fetchDetails(serviceId: number) {
-  debugger;
-this.apiService.getServiceDetails(serviceId).subscribe(
-(response) => {
-this.selectedService = response;
-},
-(error) => {
-console.error('Error fetching service details', error);
-}
-);
+navigateToDetails(serviceId: number) {
+this.router.navigate(['/service-details', serviceId]);
 }
 }
+
+const routes: Routes = [
+{ path: 'service-details/:id', component: ServiceDetailsComponent },
+// other routes
+];
+
+bootstrapApplication(AppComponent, {
+providers: [
+{ provide: ApiService, useClass: ApiService },
+{ provide: RouterModule, useValue: RouterModule.forRoot(routes) },
+{ provide: HttpClientModule, useValue: HttpClientModule }
+]
+});

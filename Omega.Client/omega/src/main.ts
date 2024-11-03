@@ -1,11 +1,14 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { provideHttpClient } from '@angular/common/http'; // Import provideHttpClient
+import { provideRouter } from '@angular/router';
+import { appRoutes } from './app/app.routes';
+import { provideHttpClient } from '@angular/common/http';
+import { ApiService } from './app/api.service';
 
-// Bootstrap the application with AppComponent and provide HttpClient
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient() // Add this line to provide HttpClient
-  ]
-})
-.catch((err) => console.error(err));
+    provideRouter(appRoutes), // Correct way to provide routes
+    provideHttpClient(),      // Correct way to provide HttpClientModule
+    ApiService,               // Providing your service
+  ],
+});

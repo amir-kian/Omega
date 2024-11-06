@@ -61,11 +61,24 @@ namespace Omega.Presentation.Server
 			builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(CreateRequestCommand))
 				.RegisterServicesFromAssemblyContaining(typeof(CreateRequestCommandHandler)));
 
+			//add cors
+
+			builder.Services.AddCors(options =>
+			{
+				options.AddPolicy("AllowAllOrigins",
+				builder => builder.AllowAnyOrigin()
+				.AllowAnyHeader()
+				.AllowAnyMethod());
+			});
+
 
 
 
 
 			var app = builder.Build();
+
+			app.UseCors("AllowAllOrigins");
+
 
 			// Configure the HTTP request pipeline.
 			if (app.Environment.IsDevelopment())

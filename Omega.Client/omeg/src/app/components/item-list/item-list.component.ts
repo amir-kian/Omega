@@ -18,8 +18,8 @@ export class ItemListComponent implements OnInit {
     ngOnInit() {
         this.apiService.getAllItems().subscribe(
             (response) => {
-                console.log('API response:', response); // Debugging line
-                this.items = response.data; // Access the data property
+                console.log('API response:', response); 
+                this.items = response; 
             },
             (error) => {
                 console.error('Error fetching items', error);

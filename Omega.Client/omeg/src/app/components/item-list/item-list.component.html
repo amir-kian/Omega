@@ -1,0 +1,35 @@
+<style>
+    body {
+        direction: rtl;
+    }
+
+    tr {
+        cursor: pointer;
+    }
+</style>
+
+<main class="main container mt-5">
+    <div *ngIf="items" class="card">
+        <div class="card-body">
+            <h1 class="card-title">API Data</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Service ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of items" (click)="navigateToDetails(item.serviceId)">
+                        <td>{{ item.serviceId }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.code }}</td>
+                        <td>{{ item.price | currency:'IRR' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

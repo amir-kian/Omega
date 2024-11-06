@@ -1,15 +1,15 @@
 <main class="main container mt-5">
     <div *ngIf="item" class="card">
     <div class="card-body">
-    <h1 class="card-title">{{ item.name }}</h1>
-    <p><strong>Service ID:</strong> {{ item.serviceId }}</p>
-    <p><strong>Code:</strong> {{ item.code }}</p>
-    <p><strong>Price:</strong> {{ item.price | currency:'IRR' }}</p>
+    <h1 class="card-title">{{ item?.name }}</h1>
+    <p><strong>Service ID:</strong> {{ item?.serviceId }}</p>
+    <p><strong>Code:</strong> {{ item?.code }}</p>
+    <p><strong>Price:</strong> {{ item?.price | currency:'IRR' }}</p>
     <p><strong>Description:</strong></p>
-    <div [innerHTML]="item.description"></div>
-    <p><strong>Contractor Share Percent:</strong> {{ item.contractorSharePercent }}%</p>
-    <p><strong>Unit Measure:</strong> {{ item.unitMeasureName }}</p>
-    <p><strong>Transport Cost Included:</strong> {{ item.transportCostIncluded ? 'Yes' : 'No' }}</p>
+    <div [innerHTML]="item?.description"></div>
+    <p><strong>Contractor Share Percent:</strong> {{ item?.contractorSharePercent }}%</p>
+    <p><strong>Unit Measure:</strong> {{ item?.unitMeasureName }}</p>
+    <p><strong>Transport Cost Included:</strong> {{ item?.transportCostIncluded ? 'Yes' : 'No' }}</p>
     </div>
     </div>
     </main>

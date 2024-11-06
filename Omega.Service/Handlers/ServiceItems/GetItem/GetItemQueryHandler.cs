@@ -6,7 +6,7 @@ using Omega.ExternalService.EbeheshtServices.Contracts;
 namespace Omega.UseCases.Handlers.ServiceItems.GetItem;
 
 
-public class GetItemQueryHandler : IRequestHandler<GetServiceItemQuery, GetServiceItemReadDTO[]>
+public class GetItemQueryHandler : IRequestHandler<GetServiceItemQuery, GetServiceItemReadDTO>
 {
 	private readonly IEbeheshtService _ebeheshtService;
 
@@ -15,14 +15,12 @@ public class GetItemQueryHandler : IRequestHandler<GetServiceItemQuery, GetServi
 		_ebeheshtService = ebeheshtService;
 	}
 
-	public async Task<GetServiceItemReadDTO[]> Handle(GetServiceItemQuery request, CancellationToken cancellationToken)
+	public async Task<GetServiceItemReadDTO> Handle(GetServiceItemQuery request, CancellationToken cancellationToken)
 	{
 		var serviceItemsResponse = await _ebeheshtService.GetItemAsync(request.ServiceReqiestId);
-		var serviceItem = serviceItemsResponse.Data; 
+		var serviceItem = serviceItemsResponse.Data;
 
-		var result = new GetServiceItemReadDTO[]
-		{
-			new(
+		var result = new GetServiceItemReadDTO(
 			serviceItem.Id,
 			serviceItem.DefaultImageIndex,
 			serviceItem.Images,
@@ -40,8 +38,8 @@ public class GetItemQueryHandler : IRequestHandler<GetServiceItemQuery, GetServi
 			serviceItem.UnitMeasureId,
 			serviceItem.UnitMeasureName,
 			serviceItem.SuperContractorsId
-			)
-		};
+			);
+		
 
 		return result;
 	}
